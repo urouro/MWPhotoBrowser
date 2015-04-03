@@ -184,7 +184,7 @@
         _previousButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:arrowPathFormat, @"Left"]] style:UIBarButtonItemStylePlain target:self action:@selector(gotoPreviousPage)];
         _nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:arrowPathFormat, @"Right"]] style:UIBarButtonItemStylePlain target:self action:@selector(gotoNextPage)];
     }
-    if (self.displayActionButton) {
+    if (self.displayActionButton && self.actionButton == nil) {
         _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonPressed:)];
     }
     
@@ -1420,6 +1420,14 @@
         if (!_viewIsActive)
             [self tilePages]; // Force tiling if view is not visible
     }
+}
+
+- (void)setActionButton:(UIBarButtonItem *)actionButton
+{
+    actionButton.target = self;
+    actionButton.action = @selector(actionButtonPressed:);
+    
+    _actionButton = actionButton;
 }
 
 #pragma mark - Misc

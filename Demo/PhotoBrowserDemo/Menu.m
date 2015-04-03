@@ -1048,6 +1048,9 @@
     browser.enableSwipeToDismiss = YES;
     [browser setCurrentPhotoIndex:0];
     
+    browser.actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
+                                                                         target:nil action:nil];
+    
     // Reset selections
     if (displaySelectionButtons) {
         _selections = [NSMutableArray new];
